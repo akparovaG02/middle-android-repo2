@@ -1,8 +1,10 @@
 package ru.yandex.praktikumchatapp
 
 import app.cash.turbine.test
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.TestDispatcher
@@ -39,7 +41,10 @@ class ChatRepositoryTest {
 
     @Test
     fun `getReplyMessage should return a non-empty string`() = runTest {
-        // TODO Задание 2: напишите юнит-тест
+        val repository = ChatRepository(ChatApi())
+        val result = repository.getReplyMessage().first()
+        assertTrue(result.isNotEmpty())
+    // TODO Задание 2: напишите юнит-тест
     }
 
     @Test
